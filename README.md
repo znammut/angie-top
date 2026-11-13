@@ -4,10 +4,16 @@ angie-top - терминальный аналог Angie Console Light повер
 Зависимости: только стандартная библиотека Python 3.8+ (curses, urllib).
 Структура JSON соответствует документации модуля http_api Angie 1.12.
 
-```
-   angie-top -u http://127.0.0.1:8080/status/
-   angie-top -u https://host/status/ --user mon --password secret -k
-   angie-top -u http://127.0.0.1:8080/status/ --once --no-color   # снимок для скриптов
+## Установка и запуск
+
+```bash
+sudo install -m 755 angie_top.py /usr/local/bin/angie-top
+
+angie-top                                              # http://127.0.0.1:8080/status/
+angie-top -u http://127.0.0.1:8080/status/ -i 2        # опрос раз в 2 с
+angie-top -u https://edge/status/ --user mon --password secret -k
+angie-top -u http://127.0.0.1:8080/status/ --once --no-color   # снимок в stdout
+angie-top -u http://127.0.0.1:8080/status/ --json              # сырой JSON
 ```
 
 ## Пример вывода (`--once`)
@@ -35,7 +41,9 @@ ALERTS
   10.0.0.11:8080        unavailable       0/-    19.9       0      0    6.0     14     3    47.0s
   192.168.16.4:80       up                4/5    1.4k    1.4k      0      0      0     0      0ms
 ```
+Клавиши в TUI: `1–6` вкладки, `←/→`/`Tab` переключение, `↑/↓`/`j/k` прокрутка, `Space` пауза, `+/−` интервал, `r` обновить, `?` справка, `q` выход.
 
+## Примечания
 
 - Нужен опубликованный API:
   ```nginx
